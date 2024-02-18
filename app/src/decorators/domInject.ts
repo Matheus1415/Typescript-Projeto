@@ -1,0 +1,23 @@
+export function domInject(selector : string){
+
+    return function(target: any, properKey : string ){
+
+        let el : HTMLElement;
+        const getter = function(){
+
+            if(!el){
+                el = <HTMLElement>document.querySelector(selector);
+                console.log(`ja ta no cache`)
+
+            }
+
+            const elemento = document.querySelector(selector);
+            return elemento
+            console.log(`Busca p elemento no DOM com o seletor ${selector} para injetar`)
+        }
+
+        Object.defineProperty(target,properKey,{
+            get: getter
+        })
+    }
+}
